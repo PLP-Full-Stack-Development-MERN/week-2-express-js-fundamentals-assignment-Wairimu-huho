@@ -1,93 +1,174 @@
-**Week 2: Express.js Fundamentals Assignment**
+# Express.js REST API Project
 
-**Objective:**
+A simple REST API built with Express.js for managing users and products.
 
-- Apply Express.js concepts learned throughout the week.
-- Develop hands-on experience with creating routes, middleware, and API endpoints.
-- Understand and implement RESTful APIs.
+## Project Setup
 
-**Instructions:**
+### Prerequisites
+- Node.js installed on your system
+- npm (Node Package Manager)
 
-1. **Setup Express.js Project:**
+### Installation
 
-   - Install Node.js using NVM.
-   - Create a new project folder named `express-assignment`.
-   - Initialize a Node.js project using:
-     ```sh
-     npm init -y
-     ```
-   - Install necessary dependencies:
-     ```sh
-     npm install express dotenv
-     ```
+1. Clone the repository or download the project files
+```bash
+git clone <repository-url>
+```
 
-2. **Project Structure:**
+2. Navigate to the project directory
+```bash
+cd <project-directory>
+```
 
-   - Organize your project files with a clear folder structure:
-     ```
-     express-assignment/
-     │-- routes/
-     │    ├── userRoutes.js
-     │    ├── productRoutes.js
-     │-- middleware/
-     │    ├── logger.js
-     │-- controllers/
-     │    ├── userController.js
-     │    ├── productController.js
-     │-- index.js
-     │-- package.json
-     │-- README.md
-     │-- .env
-     ```
+3. Initialize a new Node.js project
+```bash
+npm init -y
+```
 
-3. **Create Routes:**
+4. Install Express.js
+```bash
+npm install express
+```
 
-   - Create `userRoutes.js` and `productRoutes.js` inside the `routes/` folder.
-   - Implement RESTful routes for users and products (GET, POST, PUT, DELETE).
-   - Ensure proper usage of route parameters and query strings.
+5. Install nodemon for development (automatically restarts the server when files change)
+```bash
+npm install nodemon --save-dev
+```
 
-4. **Implement Middleware:**
+6. Edit the `package.json` file to include start script:
+```json
+"scripts": {
+  "start": "nodemon app.js"
+}
+```
 
-   - Create a custom middleware function in `middleware/logger.js` to log request details (method, URL, timestamp).
-   - Apply middleware globally to all routes.
+### Project Structure
+```
+project-folder/
+├── controllers/
+│   ├── userController.js
+│   └── productController.js
+├── middleware/
+│   └── logger.js
+├── routes/
+│   ├── userRoutes.js
+│   └── productRoutes.js
+├── app.js
+├── package.json
+└── README.md
+```
 
-5. **Develop Controllers:**
+## Running the Application
 
-   - Create controller functions in `controllers/userController.js` and `controllers/productController.js`.
-   - Implement business logic to handle requests and responses.
+Start the server with:
+```bash
+npm start
+```
 
-6. **Environment Variables:**
+The API will be available at: `http://localhost:5000`
 
-   - Use `dotenv` to manage environment variables.
-   - Define variables such as `PORT` in the `.env` file and access them inside the application.
+## API Endpoints
 
-7. **Error Handling:**
+### User Endpoints
 
-   - Implement a global error-handling middleware to catch and respond to errors gracefully.
+#### GET `/api/users`
+- Description: Get all users
+- Example Request:
+```bash
+curl http://localhost:5000/api/users
+```
 
-8. **Testing:**
+#### GET `/api/users/:id`
+- Description: Get a specific user by ID
+- Example Request:
+```bash
+curl http://localhost:5000/api/users/1
+```
 
-   - Run the server using:
-     ```sh
-     node index.js
-     ```
-   - Test API endpoints using Postman or cURL.
-   - Verify routes, middleware functionality, and error handling.
+#### POST `/api/users`
+- Description: Create a new user
+- Example Request:
+```bash
+curl -X POST http://localhost:5000/api/users \
+-H "Content-Type: application/json" \
+-d '{"name": "Alice Johnson", "email": "alice@example.com", "role": "user"}'
+```
 
-9. **Documentation:**
+#### PUT `/api/users/:id`
+- Description: Update an existing user
+- Example Request:
+```bash
+curl -X PUT http://localhost:5000/api/users/1 \
+-H "Content-Type: application/json" \
+-d '{"name": "John Doe Updated", "email": "john.updated@example.com"}'
+```
 
-   - Add a `README.md` with instructions on setting up and running the project.
-   - Document available API endpoints with descriptions and example requests.
+#### DELETE `/api/users/:id`
+- Description: Delete a user
+- Example Request:
+```bash
+curl -X DELETE http://localhost:5000/api/users/3
+```
 
-10. **Submission:**
+### Product Endpoints
 
-   - Push your code to your GitHub repository.
+#### GET `/api/products`
+- Description: Get all products
+- Example Request:
+```bash
+curl http://localhost:5000/api/products
+```
 
-**Evaluation Criteria:**
+#### GET `/api/products/:id`
+- Description: Get a specific product by ID
+- Example Request:
+```bash
+curl http://localhost:5000/api/products/2
+```
 
-- Correct implementation of Express routes and middleware.
-- Proper error handling and logging.
-- Clean project structure and code organization.
-- Detailed documentation with clear instructions.
-- Successful testing of all endpoints.
+#### GET `/api/products/category/:category`
+- Description: Get products by category
+- Example Request:
+```bash
+curl http://localhost:5000/api/products/category/electronics
+```
 
+#### POST `/api/products`
+- Description: Create a new product
+- Example Request:
+```bash
+curl -X POST http://localhost:5000/api/products \
+-H "Content-Type: application/json" \
+-d '{"name": "Smart TV", "price": 599.99, "category": "Electronics", "stock": 5}'
+```
+
+#### PUT `/api/products/:id`
+- Description: Update an existing product
+- Example Request:
+```bash
+curl -X PUT http://localhost:5000/api/products/1 \
+-H "Content-Type: application/json" \
+-d '{"price": 899.99, "stock": 10}'
+```
+
+#### DELETE `/api/products/:id`
+- Description: Delete a product
+- Example Request:
+```bash
+curl -X DELETE http://localhost:5000/api/products/3
+```
+
+## Features
+
+1. **RESTful API Design**: Follows REST principles with appropriate HTTP methods
+2. **MVC Architecture**: Separation of concerns with Models (data), Views (not applicable), and Controllers (logic)
+3. **Middleware**: Custom logger middleware to track API requests
+4. **In-Memory Data Storage**: Uses arrays to store data (can be replaced with a database later)
+5. **Error Handling**: Appropriate status codes and error messages
+
+## Next Steps
+
+- Add input validation
+- Implement authentication and authorization
+- Connect to a real database (MongoDB, PostgreSQL, etc.)
+- Add unit and integration tests

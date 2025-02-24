@@ -1,0 +1,25 @@
+{
+  "name": "week-2-express-js-fundamentals-assignment-wairimu-huho",
+  "version": "1.0.0",
+  "description": "**Week 2: Express.js Fundamentals Assignment**",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PLP-Full-Stack-Development-MERN/week-2-express-js-fundamentals-assignment-Wairimu-huho.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PLP-Full-Stack-Development-MERN/week-2-express-js-fundamentals-assignment-Wairimu-huho/issues"
+  },
+  "homepage": "https://github.com/PLP-Full-Stack-Development-MERN/week-2-express-js-fundamentals-assignment-Wairimu-huho#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {}
+}
